@@ -6,7 +6,7 @@
 <?rfc tocdepth='4'?>
 <?rfc compact="yes"?>
 <!--rfc category="info" ipr="full3978"-->
-<rfc category="std" docName="draft-ietf-siprec-metadata-20" 
+<rfc category="std" docName="draft-ietf-siprec-metadata-21" 
 ipr="trust200902">
 	<front>
 		<title abbrev="SIP Recording Metadata">Session Initiation Protocol (SIP) Recording Metadata</title>
@@ -76,7 +76,7 @@ ipr="trust200902">
 			</t>
 		</section>
 		<section title="Definitions">
-			<t>Metadata model: An abstract representation of metadata using a Unified Modelling Language(UML) class diagram.</t>
+			<t>Metadata model: An abstract representation of metadata using a Unified Modelling Language <xref target="UML-REF">(UML)</xref>  class diagram.</t>
 			<t>Metadata classes: Each block in the model represents a class. A class is a construct that is used as a blueprint to create instances(called objects) of itself.  The description of each class also has representation of its attributes in a second compartment below the class name.</t>
 			<t>Attributes: Attributes represent the elements listed in each of the classes. The attributes of a class are listed in the second compartment below the class name. Each instance of class conveys values for these attributes which adds to the recording's metadata.</t>
 			<t>Linkages: Linkages represent the relationship between the classes in the model. Each represents a logical connection between classes(or objects) in  class diagrams(or object diagrams). The linkages used in the metadata model of this document are associations. </t>
@@ -132,11 +132,10 @@ ipr="trust200902">
 				 ]]>
 </artwork></figure></t>
 <t>
-	The metadata model is a class diagram in Unified Modelling Language(UML). The model describes the structure of metadata in general by showing the classes, their attributes, and the relationships among the classes. Each block in the model above represents a class. The linkages between the classes represent the relationships which can be associations or composition. 
-	The metadata is conveyed from SRC to SRS.
+	The metadata model is a class diagram in UML. The model describes the structure of metadata in general by showing the classes, their attributes, and the relationships among the classes. Each block in the model above represents a class. The linkages between the classes represent the relationships which can be associations or composition. The metadata is conveyed from SRC to SRS.
 </t>
 
-          <t>The model allows the capture of a snapshot of a recording's metadata at a given instant in time. Metadata changes to reflect changes in what is being recorded. For example, if a participant joins a conference, then the SRC sends the SRS a snapshot of metadata having that participant information (with attributes like name/AoR pair and associate-time.)</t>
+          <t>The model allows the capture of a snapshot of a recording's metadata at a given instant in time. Metadata changes to reflect changes in what is being recorded. For example, if a participant joins a conference, then the SRC sends the SRS a snapshot of metadata having that participant information.</t>
 			<t>Some of the metadata is not required to be conveyed explicitly from the SRC to the SRS, if it can be obtained contextually by the SRS(e.g., from SIP or SDP signalling).</t>
 </section>
 
@@ -149,10 +148,10 @@ This section gives an overview of the Recording metadata format. Some data from 
 				 </t>
                  <section title="XML data format">
        			<t><![CDATA[
-Every recording metadata XML document sent from SRC to SRS MUST contain a <recording> element. The <recording> element acts as a container for all other elements in this XML document.
+Every recording metadata XML document sent from SRC to SRS MUST contain a 'recording' element. The 'recording' element acts as a container for all other elements in this XML document.
 			]]></t> 
        			<t>
-A recording object is an XML document. It MUST have the XML declaration and it SHOULD contain an encoding declaration in the XML declaration, e.g., <![CDATA[ "<?xml version='1.0' encoding='UTF-8'?>". ]]> If the charset parameter of the MIME content type declaration is present and it is different from the encoding declaration, the charset parameter takes precedence.
+A 'recording' object is an XML document. It MUST have the XML declaration and it SHOULD contain an encoding declaration in the XML declaration, e.g., <![CDATA[ "<?xml version='1.0' encoding='UTF-8'?>". ]]> If the charset parameter of the MIME content type declaration is present and it is different from the encoding declaration, the charset parameter takes precedence.
 				</t>
                          <t>
 Every application conforming to this specification MUST accept the UTF-8 character encoding to ensure the minimal interoperability.
@@ -161,16 +160,14 @@ Every application conforming to this specification MUST accept the UTF-8 charact
 Syntax and semantic errors in an XML document should be reported to the originator using application specific mechanisms.
                         </t>
  <section title="Namespace">
-				<t>
-  The namespace URI for elements defined by this specification is a Uniform Resource Namespace (URN) <xref target="RFC2141"/>, using the namespace    identifier 'ietf' defined by <xref target="RFC2648"/> and extended by <xref target="RFC3688"/>.
-				</t>
-                        <t>
-The URN is: urn:ietf:params:xml:ns:recording:1
-				</t>
+				<t>The namespace URI for elements defined by this specification is
+   the following URN:</t>
+
+      <t>urn:ietf:params:xml:ns:recording:1</t>
                     </section>
                        <section title="recording">
 				<t><![CDATA[
-The <recording> element MUST contain an xmlns namespace attribute with value as urn:ietf:params:xml:ns:recording:1. One recording element MUST be present in every recording metadata XML document.
+The 'recording' element MUST contain an xmlns namespace attribute with value as urn:ietf:params:xml:ns:recording:1. One recording element MUST be present in every recording metadata XML document.
 				]]></t>
 	                 <t><![CDATA[
 A recording element MAY contain a <dataMode> element indicating whether the XML document is a complete document or a partial update. If no <dataMode> element is present then the default value is "complete".
@@ -201,17 +198,17 @@ A recording element MAY contain a <dataMode> element indicating whether the XML 
 					]]>
 				</artwork></figure></t>
 				<t>Each instance of a Recording Session(RS) class namely the Recording Session Object represents a SIP session created between an SRC and SRS for the purpose of recording a Communication Session(CS). </t>
-				<t><![CDATA[RS object is represented in XML schema using <recording>  element. That in turn relies on the SIP/SDP session with which the XML document is associated to provide the attributes of the RS element. ]]></t>
+				<t><![CDATA[RS object is represented in XML schema using 'recording'  element. That in turn relies on the SIP/SDP session with which the XML document is associated to provide the attributes of the RS element. ]]></t>
 				
 			<section title="Attributes">
-			   <t> A RS class has the following attributes:</t>
+			   <t> An RS class has the following attributes:</t>
 			   <t>
 				<list style='symbols'>
-					<t> start-time - Represents the start time of a RS object. </t>
-					<t>end-time - Represents the end time of a RS object. </t>
+					<t> start-time - Represents the start time of an RS object. </t>
+					<t>end-time - Represents the end time of an RS object. </t>
 				</list> </t>
 
-			   <t>start-time and end-time attribute values are derivable from Date header(if present in SIP message) in RS. In cases where Date header is not present, start-time is derivable from the time at which SRS receives the notification of SIP message to setup RS and and end-time is derivable from the time at which SRS receives disconnect on the RS SIP dialog. </t>
+			   <t>'start-time' and 'end-time' attribute values are derivable from Date header(if present in SIP message) in RS. In cases where Date header is not present, 'start-time' is derivable from the time at which SRS receives the notification of SIP message to setup RS and and 'end-time' is derivable from the time at which SRS receives disconnect on the RS SIP dialog. </t>
 			  	
 				</section>
 				<section title="Linkages">
@@ -252,13 +249,13 @@ A recording element MAY contain a <dataMode> element indicating whether the XML 
 				<t>
 					One instance of a Communication Session Group(CS-Group) class namely the Communication Session Group object provides  association or linking of Communication Sessions. 
 				</t>
-				<t><![CDATA[ CS-Group object is represented in XML schema using <group> element. ]]> </t>
+				<t><![CDATA[ CS-Group object is represented in XML schema using 'group' element. ]]> </t>
 				<section title="Attributes">
 				   <t> A CS-Group has the following attributes: 
 					<list style='symbols'>
-						<t>group_id - This is to group different CSs that are related. SRC (or SRS) is responsible for ensuring the uniqueness of group_id in case multiple SRC interacts with the same SRS. The mechanism by which SRC groups the CS is outside the scope of SIPREC. </t>
+						<t>group_id - This is to group different CSs that are related. SRC (or SRS) is responsible for ensuring the uniqueness of 'group_id' in case multiple SRC interacts with the same SRS. The mechanism by which SRC groups the CS is outside the scope of SIPREC. </t>
 						<t>associate-time - This is the time when a grouping is formed. The rules that determine how a grouping of different CS objects is done by SRC is outside the scope of SIPREC.</t>
-						<t>disassociate-time - disassociate-time for CS-Group is calculated by SRC as the time when the grouping ends.</t>
+						<t>disassociate-time - 'disassociate-time' for CS-Group is calculated by SRC as the time when the grouping ends.</t>
 					</list>
 				   </t>
 				</section>
@@ -306,19 +303,19 @@ Participant              Media Stream
 <t>
 A Communication Session(CS) class and its object in the metadata model represents a CS and its properties needed as seen by SRC. 
 </t>
-<t><![CDATA[ CS object is represented in XML schema using <session> element. ]]> </t>
+<t><![CDATA[ CS object is represented in XML schema using 'session' element. ]]> </t>
 				
 <section title="Attributes">
    <t> A CS class has the following attributes:</t>
 	   <t>
 		 <list style='symbols'>
-		 	<t>session_id - This attribute is used to uniquely identify an instance of CS object namely the session XML element with in the metadata XML document. session_id is generated using the rules mentioned in <xref target="sec-uuid"/>.</t>
+		 	<t>session_id - This attribute is used to uniquely identify an instance of CS object namely the session XML element with in the metadata XML document. 'session_id' is generated using the rules mentioned in <xref target="sec-uuid"/>.</t>
 
-		 	<t>reason - This represents the reason why a CS was terminated.  The value for this attribute is derived from SIP Reason header <xref target="RFC3326"/> of CS.  There MAY be multiple instances of the reason XML element inside a session element.  The reason XML element has 'protocol' as an attribute, which indicates the protocol from which the reason string is derived. The default value for protocol attribute is "SIP". The reason element can be derived from a SIP Reason header in the CS.</t>
+		 	<t>reason - This represents the reason why a CS was terminated.  The value for this attribute is derived from SIP Reason header <xref target="RFC3326"/> of CS.  There MAY be multiple instances of the 'reason' XML element inside a 'session' element.  The 'reason' XML element has 'protocol' as an attribute, which indicates the protocol from which the reason string is derived. The default value for protocol attribute is "SIP". The 'reason' element can be derived from a SIP Reason header in the CS.</t>
 
-		 	<t>sipSessionID - This attribute carries sip Session-ID defined in <xref target="I-D.ietf-insipid-session-id"/>. Each CS object can have zero or more sipSessionID elements. More than one sipSessionID may be present in a CS for conference flows. For example, if three participants A, B and C are in a conference that has a focus acting as SRC, the metadata sent from the SRC to the SRS will likely have three sipSessionID elements that correspond to the SIP dialogs the focus has with each of the three participants.</t>
+		 	<t>sipSessionID - This attribute carries sip Session-ID defined in <xref target="I-D.ietf-insipid-session-id"/>. Each CS object can have zero or more sipSessionID elements. More than one 'sipSessionID' attribute may be present in a CS. For example, if three participants A, B and C are in a conference that has a focus acting as SRC, the metadata sent from the SRC to the SRS will likely have three 'sipSessionID' elements that correspond to the SIP dialogs the focus has with each of the three participants.</t>
 
-		 	<t>group-ref - A group-ref attribute MAY be present to indicate the group(identified by group_id) to which the enclosing session belongs.</t>
+		 	<t>group-ref - A 'group-ref' attribute MAY be present to indicate the group(identified by 'group_id') to which the enclosing session belongs.</t>
 
 		 	<t>start-time - This optional attribute represents start time of CS as seen by SRC.</t>
 
@@ -389,14 +386,14 @@ A Communication Session(CS) class and its object in the metadata model represent
 				</artwork></figure></t>
 				<t>
 The CSRSAssociation class describes the association of a CS to an RS for a period of time. A single CS may be associated with different RSs (perhaps by different SRCs) and may be associated and dissociated several times. </t>
-<t><![CDATA[ The CSRSAssociation is represented in XML using sessionrecordingassoc XML element. ]]></t>
+<t><![CDATA[ The CSRSAssociation is represented in XML using 'sessionrecordingassoc' XML element. ]]></t>
 				<section title="Attributes">
 					<t>CSRSAssociation class has the following attributes:</t>
 					<t>
 						<list style='symbols'>
 							<t>associate-time - associate-time is calculated by SRC as the time it sees a CS associated to a RS</t>
 							<t>disassociate-time- disassociate-time is calculated by SRC as the time it see a CS disassociate from a RS.</t>
-							<t>session_id - Each instance of this class MUST have session_id attribute that identifies the the CS to which this association belongs to. </t>
+							<t>session_id - Each instance of this class MUST have 'session_id' attribute that identifies the the CS to which this association belongs to. </t>
 						</list>
 					</t>
 				</section>
@@ -428,13 +425,13 @@ receives|                |sends
 				</artwork></figure>	</t>
 				<t>
 					A participant class and its objects has information about a device that is part of a CS and/or contributes/consumes media stream(s) belonging to a CS.</t>
-				<t><![CDATA[ Participant object is represented in XML schema using <participant> element. ]]> </t>
+				<t><![CDATA[ Participant object is represented in XML schema using 'participant' element. ]]> </t>
 				<section title="Attributes">
 					<t> A participant class has two attributes:</t>
 					<t>
 						<list style='symbols'>
-							<t>nameID - This attribute is a list of Name/AoR tuples. An AoR can be one of SIP/SIPS/TEL URI, FQDN or IP address. The AoR MAY be drawn from From header or P-Asserted-Identity header or Remote-Party-ID header. SRC's local policy is used to decide on where to draw the AoR from. Name represents participant name(SIP display name) or dialed number (DN) (when known). Multiple tuples are allowed for cases where a participant has more than one AoR. (For example a P-Asserted-identity header <xref target="RFC3325"/> can have both SIP and TEL URIs.)</t>
-							<t>participant_id - This attribute  is used to identify the participant XML element with in the XML document. It is generated using the rules mentioned in <xref target="sec-uuid"/>. This attribute MUST be used for all references to a participant within a CSG, and MAY be used to reference the same participant more globally. </t>
+							<t>nameID - This attribute is a list of Name, Address-of-Record (AoR) defined in Section 6 of <xref target="RFC3261"/> tuples. An AoR can be one of SIP/SIPS/TEL URI, FQDN or IP address. The AoR MAY be drawn from From header or P-Asserted-Identity header or Remote-Party-ID header. SRC's local policy is used to decide on where to draw the AoR from. Name represents participant name(SIP display name) or dialed number (DN) (when known). Multiple tuples are allowed for cases where a participant has more than one AoR. (For example a P-Asserted-identity header <xref target="RFC3325"/> can have both SIP and TEL URIs.)</t>
+							<t>participant_id - This attribute is used to identify the 'participant' XML element with in the XML document. It is generated using the rules mentioned in <xref target="sec-uuid"/>. This attribute MUST be used for all references to a participant within a CSG, and MAY be used to reference the same participant more globally. </t>
 						</list>	</t>
 					<t>This document does not specify other attributes relating to participant e.g. participant role, participant type. An SRC which has information of these attributes can indicate the same as part of extension data to participant from SRC to SRS.</t>
 				
@@ -480,14 +477,14 @@ Example of a case where a participant receives zero or more streams - a supervis
 				<t>
 The ParticipantCSAssociation class describes the association of a participant to an CS for a period of time. A participant may be associated and dissociated from a CS several times. (For example, connecting to a conference, then disconnecting, then connecting again.)
 				</t>
-				<t><![CDATA[ ParticipantCSAssociation object is represented in XML schema using <participantsessionassoc> element. ]]> </t>
+				<t><![CDATA[ ParticipantCSAssociation object is represented in XML schema using 'participantsessionassoc' element. ]]> </t>
 				<section title="Attributes">
 					<t>ParticipantCS association class has the following attributes:</t>
 					<t>
 						<list style='symbols'>
 							<t>associate-time - associate-time is calculated by SRC as the time it sees a participant  associated to a CS.</t>
 							<t>disassociate-time- disassociate-time is calculated by the SRC as the time it sees a participant disassociate from a CS. It is possible that a given participant can have multiple associate/disassociate times within given communication session. </t>
-							<t>param - An optional attribute describing the capabilities of a participant in a CS, as defined in  <xref target="RFC3840"/>. For example, in a CS(which can be a conference), you can have participants who are playing the role of "focus". These participants does not contribute to media in the CS, however they switch the media received from one participant to every other participant in the CS. Indicating the capability of participant (here "focus") would be useful for recorder to learn about these kind of participants. The capablities are represented using param XML element in the metadata. The 'param' XML element encoding defined in <xref target="RFC4235"/> is used to represent the capabilties attributes in metadata. Each participant may have zero or more capabilities. 
+							<t>param - An optional attribute describing the capabilities of a participant in a CS, as defined in  <xref target="RFC3840"/>. For example, in a CS(which can be a conference), you can have participants who are playing the role of "focus". These participants does not contribute to media in the CS, however they switch the media received from one participant to every other participant in the CS. Indicating the capability of participant (here "focus") would be useful for recorder to learn about these kind of participants. The capablities are represented using 'param' XML element in the metadata. The 'param' XML element encoding defined in <xref target="RFC4235"/> is used to represent the capabilties attributes in metadata. Each participant may have zero or more capabilities. 
 							 A participant may use different capabilities depending on the role it plays at a particular instance. For example, if a participant moves across different CSs (e.g., due to transfer) or is simultaneously present in different CSs with different roles.</t>
 
 						<t>participant_id - This attribute identifies the participant to which this association belongs to. </t>
@@ -522,12 +519,12 @@ Communication 0..1  0..* +-------------------------+
 					]]>
 				</artwork></figure></t>
 				<t>A MS class (and its objects) has the properties of media as seen by SRC and sent to SRS. Different snapshots of a MS objects may be sent whenever there is a change in media (e.g. direction change like pause/resume and/or codec change and/or participant change.).</t>
-				<t><![CDATA[ MS object is represented in XML schema using <stream> element. ]]> </t>
+				<t><![CDATA[ MS object is represented in XML schema using 'stream' element. ]]> </t>
 				<section title="Attributes">
 					<t>A MS class has the the following attributes:</t>
 					<t>
 						<list style='symbols'>
-							<t>label - The label attribute within the stream XML element references an SDP "a=label" attribute that identifies an m-line within the RS SDP. That m-line carries the media stream from the SRC to the SRS.</t>
+							<t>label - The label attribute within the 'stream' XML element references an SDP 'a=label' attribute that identifies an m-line within the RS SDP. That m-line carries the media stream from the SRC to the SRS.</t>
 							<t>
 								content-type - The content of an MS element will be described in terms of value from the <xref target="RFC4796"/> registry. If the SRC wishes to convey the Content-type to the SRS, it does so by including an 'a=content' attribute with the m-line in the RS SDP.
 							</t>
@@ -575,7 +572,7 @@ Communication 0..1  0..* +-------------------------+
 							<t>participant_id - This attributes points to the participant to which a stream element is associated with.</t>
 						</list>
 					</t>
-					<t><![CDATA[<participantstreamassoc>]]> XML element is used to represent a participant association with a stream. The send and recv XML elements MUST be used to indicate whether a participant is contributing to a stream or receiving a stream.  There MAY be multiple instances of the send and recv XML elements inside a particpantstreamassoc element.  If a metadata snapshot is sent with a participantstreamassoc that does not have any send and recv elements, it means that participant is neither contributing to any streams nor receiving any streams.</t>
+					<t><![CDATA[<participantstreamassoc>]]> XML element is used to represent a participant association with a stream. The 'send' and 'recv' XML elements MUST be used to indicate whether a participant is contributing to a stream or receiving a stream.  There MAY be multiple instances of the 'send' and 'recv' XML elements inside a 'particpantstreamassoc' element.  If a metadata snapshot is sent with a 'participantstreamassoc' element that does not have any 'send' and 'recv' elements, it means that participant is neither contributing to any streams nor receiving any streams.</t>
 				</section>
 				<section title="Linkages">
 					<t>The ParticipantStreamAssociation class is linked to participant and MS classes. </t>
@@ -589,7 +586,7 @@ XML elements <associate-time>, <disassociate-time>,  <start-time> and <stop-time
 ]]> contain strings representing the date and time.  The value of these elements MUST follow the IMPP datetime format <xref target="RFC3339"/>.  Timestamps that contain 'T' or 'Z' MUST use the capitalized forms.
 				</t>
                         <t>
-					As a security measure, the timestamp element SHOULD be included in all tuples unless the exact time of the status change cannot be determined.
+					As a security measure, the timestamp element MUST be included in all tuples unless the exact time of the status change cannot be determined.
 				</t>
 		       </section>
 			<section anchor="sec-uuid" title="Unique ID format">
@@ -599,7 +596,9 @@ XML elements <associate-time>, <disassociate-time>,  <start-time> and <stop-time
 					<t>the UUID is encoded using base64 as defined in <xref target="RFC4648"/> </t>
 				</list>
 			   </t>
-                       <t> The above mentioned unique-id mechanism SHOULD be used for each metadata element.  Multiple SRC's can refer to the same element/UUID (how each SRC learns the UUID here is out of scope of SIPREC)</t>
+                       <t> The above mentioned unique-id mechanism SHOULD be used for each metadata element.  Multiple SRC's can refer to the same element/UUID (how each SRC learns the UUID here is out of scope of SIPREC). If two SRCs use the same UUID, it MUST retain the UUID/element mapping. If the SRS detects that a UUID is mapped to more than one element at any point of time it MUST treat this as a error. For example, the SRS may choose to reject or ignore the portions of metadata where it detects same UUID is mapped to a different elements other than the expected element (the SRS learns the mapped UUID when it sees a element for the first time in a metadata instance).</t>
+
+                       <t>The algorithm for generating UUID MUST to chosen so that the probability of accidental conflict is as low as if a truly random algorithm was used.</t>
 			</section>
 			<section title="Metadata version Indicator">
                 <t> Metadata version is defined to help SRC and SRS to know the version of metadata XML schema used. SRCs and SRSs that support this specification MUST use version 1 in the namespace(urn:ietf:params:xml:ns:recording:1) in all the XML documents.  Implementations may not interoperate if the version implemented by the sender is not known by the receiver.  No negotiation of versions is provided.  There is no significance to the version number although documents which update or obsolete this document (possibly including drafts of such documents) should include a higher version number if the metadata XML schema changes. </t>
@@ -618,8 +617,8 @@ XML elements <associate-time>, <disassociate-time>,  <start-time> and <stop-time
 		     	<![CDATA[
 <?xml version="1.0" encoding="UTF-8"?>
   <requestsnapshot xmlns='urn:ietf:params:xml:ns:recording:1'>
-    <requestreason xml:lang="it">SRS internal error</requestreason>
-  </requestsnapshot>
+  <requestreason xml:lang="it">SRS internal error</requestreason>
+</requestsnapshot>
 		      ]]>
 		     </artwork></figure></t>
 			</section>		
@@ -632,95 +631,92 @@ XML elements <associate-time>, <disassociate-time>,  <start-time> and <stop-time
 					<artwork>
 						<![CDATA[ 
 <?xml version="1.0" encoding="UTF-8"?>
-<recording xmlns='urn:ietf:params:xml:ns:recording:1'>
+  <recording xmlns='urn:ietf:params:xml:ns:recording:1'>
   <datamode>complete</datamode>
-	<group group_id="7+OTCyoxTmqmqyA/1weDAg==">
+  <group group_id="7+OTCyoxTmqmqyA/1weDAg==">
+    <associate-time>2010-12-16T23:41:07Z</associate-time>
+    <!-- Standardized extension -->
+    <call-center xmlns='urn:ietf:params:xml:ns:callcenter'>
+	  <supervisor>sip:alice@atlanta.com</supervisor>
+    </call-center>
+    <mydata xmlns='http://example.com/my'>
+	  <structure>FOO!</structure>
+	  <whatever>bar</whatever>
+    </mydata>
+  </group>
+  <session session_id="hVpd7YQgRW2nD22h7q60JQ==">
+	<sipSessionID>ab30317f1a784dc48ff824d0d3715d86;
+        remote=47755a9de7794ba387653f2099600ef2</sipSessionID>
+	<group-ref>7+OTCyoxTmqmqyA/1weDAg==</group-ref>
+	<!-- Standardized extension -->
+    <mydata xmlns='http://example.com/my'>
+	  <structure>FOO!</structure>
+	   <whatever>bar</whatever>
+	</mydata>
+  </session>
+  <participant participant_id="srfBElmCRp2QB23b7Mpk0w==">
+	<nameID aor="sip:bob@biloxi.com">
+	   <name xml:lang="it">Bob B</name>
+	</nameID>
+	<!-- Standardized extension -->
+	<mydata xmlns='http://example.com/my'>
+		<structure>FOO!</structure>
+		<whatever>bar</whatever>
+	</mydata>
+  </participant>
+  <participant participant_id="zSfPoSvdSDCmU3A3TRDxAw==">
+	<nameID aor="sip:Paul@biloxy.com">
+	  <name xml:lang="it">Paul</name>
+	</nameID>
+	<!-- Standardized extension -->
+	<mydata xmlns='http://example.com/my'>
+	   <structure>FOO!</structure>
+	   <whatever>bar</whatever>
+	</mydata>
+  </participant>
+  <stream stream_id="UAAMm5GRQKSCMVvLyl4rFw=="
+          session_id="hVpd7YQgRW2nD22h7q60JQ==">
+	<label>96</label>
+  </stream>
+  <stream stream_id="i1Pz3to5hGk8fuXl+PbwCw=="
+           session_id="hVpd7YQgRW2nD22h7q60JQ==">
+	 <label>97</label>
+  </stream>
+  <stream stream_id="8zc6e0lYTlWIINA6GR+3ag=="
+           session_id="hVpd7YQgRW2nD22h7q60JQ==">
+	<label>98</label>
+  </stream>
+  <stream stream_id="EiXGlc+4TruqqoDaNE76ag=="
+           session_id="hVpd7YQgRW2nD22h7q60JQ==">
+	<label>99</label>
+  </stream>
+  <sessionrecordingassoc session_id="hVpd7YQgRW2nD22h7q60JQ==">
 		<associate-time>2010-12-16T23:41:07Z</associate-time>
-		<!-- Standardized extension -->
-		<call-center xmlns='urn:ietf:params:xml:ns:callcenter'>
-			<supervisor>sip:alice@atlanta.com</supervisor>
-		</call-center>
-		<mydata xmlns='http://example.com/my'>
-			<structure>FOO!</structure>
-			<whatever>bar</whatever>
-		</mydata>
-	</group>
-	<session session_id="hVpd7YQgRW2nD22h7q60JQ==">
-		<sipSessionID>ab30317f1a784dc48ff824d0d3715d86;
-                  remote=47755a9de7794ba387653f2099600ef2</sipSessionID>
-		<group-ref>7+OTCyoxTmqmqyA/1weDAg==
-		</group-ref>
-		<!-- Standardized extension -->
-		<mydata xmlns='http://example.com/my'>
-			<structure>FOO!</structure>
-			<whatever>bar</whatever>
-		</mydata>
-	</session>
-	<participant
-              participant_id="srfBElmCRp2QB23b7Mpk0w==">
-		<nameID aor="sip:bob@biloxi.com">
-			<name xml:lang="it">Bob B</name>
-		</nameID>
-		<!-- Standardized extension -->
-		<mydata xmlns='http://example.com/my'>
-			<structure>FOO!</structure>
-			<whatever>bar</whatever>
-		</mydata>
-	</participant>
-	<participant
-               participant_id="zSfPoSvdSDCmU3A3TRDxAw==">
-		<nameID aor="sip:Paul@biloxy.com">
-			<name xml:lang="it">Paul</name>
-		</nameID>
-		<!-- Standardized extension -->
-		<mydata xmlns='http://example.com/my'>
-			<structure>FOO!</structure>
-			<whatever>bar</whatever>
-		</mydata>
-	</participant>
-	<stream stream_id="UAAMm5GRQKSCMVvLyl4rFw=="
-               session_id="hVpd7YQgRW2nD22h7q60JQ==">
-		<label>96</label>
-	</stream>
-	<stream stream_id="i1Pz3to5hGk8fuXl+PbwCw=="
-               session_id="hVpd7YQgRW2nD22h7q60JQ==">
-		<label>97</label>
-	</stream>
-	<stream stream_id="8zc6e0lYTlWIINA6GR+3ag=="
-               session_id="hVpd7YQgRW2nD22h7q60JQ==">
-		<label>98</label>
-	</stream>
-	<stream stream_id="EiXGlc+4TruqqoDaNE76ag=="
-               session_id="hVpd7YQgRW2nD22h7q60JQ==">
-		<label>99</label>
-	</stream>
-	<sessionrecordingassoc session_id="hVpd7YQgRW2nD22h7q60JQ==">
-		<associate-time>2010-12-16T23:41:07Z</associate-time>
-	</sessionrecordingassoc>
-	<participantsessionassoc
-              participant_id="srfBElmCRp2QB23b7Mpk0w=="
-              session_id="hVpd7YQgRW2nD22h7q60JQ==">
-		<associate-time>2010-12-16T23:41:07Z</associate-time>
-	</participantsessionassoc>
-	<participantsessionassoc
-               participant_id="zSfPoSvdSDCmU3A3TRDxAw=="
-               session_id="hVpd7YQgRW2nD22h7q60JQ==">
-		<associate-time>2010-12-16T23:41:07Z</associate-time>
-	</participantsessionassoc>
-	<participantstreamassoc
-              participant_id="srfBElmCRp2QB23b7Mpk0w==">
-		<send>i1Pz3to5hGk8fuXl+PbwCw==</send>
-		<send>UAAMm5GRQKSCMVvLyl4rFw==</send>
-		<recv>8zc6e0lYTlWIINA6GR+3ag==</recv>
-		<recv>EiXGlc+4TruqqoDaNE76ag==</recv>
-	</participantstreamassoc>
-	<participantstreamassoc
-               participant_id="zSfPoSvdSDCmU3A3TRDxAw==">
-		<send>8zc6e0lYTlWIINA6GR+3ag==</send>
-		<send>EiXGlc+4TruqqoDaNE76ag==</send>
-		<recv>UAAMm5GRQKSCMVvLyl4rFw==</recv>
-		<recv>i1Pz3to5hGk8fuXl+PbwCw==</recv>
-	</participantstreamassoc>
+  </sessionrecordingassoc>
+  <participantsessionassoc
+       participant_id="srfBElmCRp2QB23b7Mpk0w=="
+       session_id="hVpd7YQgRW2nD22h7q60JQ==">
+	<associate-time>2010-12-16T23:41:07Z</associate-time>
+  </participantsessionassoc>
+  <participantsessionassoc
+       participant_id="zSfPoSvdSDCmU3A3TRDxAw=="
+       session_id="hVpd7YQgRW2nD22h7q60JQ==">
+	   <associate-time>2010-12-16T23:41:07Z</associate-time>
+  </participantsessionassoc>
+  <participantstreamassoc
+       participant_id="srfBElmCRp2QB23b7Mpk0w==">
+	   <send>i1Pz3to5hGk8fuXl+PbwCw==</send>
+	   <send>UAAMm5GRQKSCMVvLyl4rFw==</send>
+	   <recv>8zc6e0lYTlWIINA6GR+3ag==</recv>
+	   <recv>EiXGlc+4TruqqoDaNE76ag==</recv>
+  </participantstreamassoc>
+  <participantstreamassoc
+      participant_id="zSfPoSvdSDCmU3A3TRDxAw==">
+	  <send>8zc6e0lYTlWIINA6GR+3ag==</send>
+	  <send>EiXGlc+4TruqqoDaNE76ag==</send>
+	  <recv>UAAMm5GRQKSCMVvLyl4rFw==</recv>
+	  <recv>i1Pz3to5hGk8fuXl+PbwCw==</recv>
+  </participantstreamassoc>
 </recording>
                            ]]>
 					</artwork>
@@ -736,18 +732,18 @@ XML elements <associate-time>, <disassociate-time>,  <start-time> and <stop-time
   <?xml version="1.0" encoding="UTF-8"?>
 <recording xmlns='urn:ietf:params:xml:ns:recording:1'>
   <datamode>partial</datamode>
-       <participant
-          participant_id="srfBElmCRp2QB23b7Mpk0w==">
-          <nameID aor="sip:bob@biloxi.com">
-		    <name xml:lang="it">Bob R</name>
-		  </nameID>     
-       </participant>
-       <participantsessionassoc
-             participant_id="srfBElmCRp2QB23b7Mpk0w=="
-             session_id="hVpd7YQgRW2nD22h7q60JQ==">
-           <disassociate-time>2010-12-16T23:41:07Z</disassociate-time>
-        </participantsessionassoc>
-     </recording>
+    <participant
+      participant_id="srfBElmCRp2QB23b7Mpk0w==">
+      <nameID aor="sip:bob@biloxi.com">
+		<name xml:lang="it">Bob R</name>
+	  </nameID>     
+    </participant>
+    <participantsessionassoc
+       participant_id="srfBElmCRp2QB23b7Mpk0w=="
+       session_id="hVpd7YQgRW2nD22h7q60JQ==">
+      <disassociate-time>2010-12-16T23:41:07Z</disassociate-time>
+    </participantsessionassoc>
+</recording>
                            ]]>
 					</artwork>
 				</figure></t>
@@ -766,21 +762,21 @@ This section defines XML schema for Recording metadata document
       xmlns:tns="urn:ietf:params:xml:ns:recording:1"
       elementFormDefault="qualified"
       attributeFormDefault="unqualified">
-     <!-- This import brings in the XML language attribute xml:lang-->
-     <xs:import namespace="http://www.w3.org/XML/1998/namespace"
+    <!-- This import brings in the XML language attribute xml:lang-->
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace"
                  schemaLocation="https://www.w3.org/2001/xml.xsd"/>
-     <xs:element name="recording" type="tns:recording"/>
-     <xs:complexType name="recording">
-         <xs:sequence>
-             <xs:element name="datamode" type="tns:dataMode"
+    <xs:element name="recording" type="tns:recording"/>
+    <xs:complexType name="recording">
+        <xs:sequence>
+            <xs:element name="datamode" type="tns:dataMode"
                   minOccurs="0"/>
-           <xs:element name="group" type="tns:group"
+            <xs:element name="group" type="tns:group"
                   minOccurs="0" maxOccurs="unbounded"/>
-             <xs:element name="session" type="tns:session"
+            <xs:element name="session" type="tns:session"
                   minOccurs="0" maxOccurs="unbounded"/>
-             <xs:element name="participant" type="tns:participant"
+            <xs:element name="participant" type="tns:participant"
                   minOccurs="0" maxOccurs="unbounded"/>
-             <xs:element name="stream" type="tns:stream"
+            <xs:element name="stream" type="tns:stream"
                  minOccurs="0" maxOccurs="unbounded"/>
             <xs:element name="sessionrecordingassoc"
                  type="tns:sessionrecordingassoc"
@@ -796,9 +792,9 @@ This section defines XML schema for Recording metadata document
                      maxOccurs='unbounded'
                      processContents='lax'/>
          </xs:sequence>
-     </xs:complexType>
-     <xs:complexType name="group">
-         <xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="group">
+        <xs:sequence>
            <xs:element name="associate-time" type="xs:dateTime"
               minOccurs="0"/>
            <xs:element name="disassociate-time" type="xs:dateTime"
@@ -807,12 +803,12 @@ This section defines XML schema for Recording metadata document
                      minOccurs='0'
                      maxOccurs='unbounded'
                      processContents='lax'/>
-         </xs:sequence>
-         <xs:attribute name="group_id" type="xs:base64Binary"
+        </xs:sequence>
+        <xs:attribute name="group_id" type="xs:base64Binary"
               use="required"/>
-     </xs:complexType>
-     <xs:complexType name="session">
-         <xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="session">
+        <xs:sequence>
            <xs:element name="sipSessionID" type="xs:string" minOccurs="0"
                    maxOccurs="unbounded"/>
            <xs:element name="reason" type="tns:reason" minOccurs="0"
@@ -827,12 +823,12 @@ This section defines XML schema for Recording metadata document
                      minOccurs='0'
                      maxOccurs='unbounded'
                      processContents='lax'/>
-         </xs:sequence>
-         <xs:attribute name="session_id" type="xs:base64Binary"
+        </xs:sequence>
+        <xs:attribute name="session_id" type="xs:base64Binary"
               use="required"/>
-     </xs:complexType>
-     <xs:complexType name="sessionrecordingassoc">
-         <xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="sessionrecordingassoc">
+        <xs:sequence>
            <xs:element name="associate-time" type="xs:dateTime"
                   minOccurs="0"/>
            <xs:element name="disassociate-time" type="xs:dateTime"
@@ -841,49 +837,49 @@ This section defines XML schema for Recording metadata document
                      minOccurs='0'
                      maxOccurs='unbounded'
                      processContents='lax'/>
-         </xs:sequence>
-         <xs:attribute name="session_id" type="xs:base64Binary"
+        </xs:sequence>
+        <xs:attribute name="session_id" type="xs:base64Binary"
               use="required"/>
-     </xs:complexType>
-     <xs:complexType name="participant">
-         <xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="participant">
+        <xs:sequence>
              <xs:element name="nameID" type="tns:nameID"
                      maxOccurs='unbounded'/>
-          <xs:any namespace='##other'
+        <xs:any namespace='##other'
                      minOccurs='0'
                      maxOccurs='unbounded'
                      processContents='lax'/>
-         </xs:sequence>
-         <xs:attribute name="participant_id" type="xs:base64Binary"
+        </xs:sequence>
+        <xs:attribute name="participant_id" type="xs:base64Binary"
               use="required"/>
-  </xs:complexType>
-     <xs:complexType name="participantsessionassoc">
-         <xs:sequence>
-         <xs:element name="associate-time" type="xs:dateTime"
+    </xs:complexType>
+    <xs:complexType name="participantsessionassoc">
+        <xs:sequence>
+        <xs:element name="associate-time" type="xs:dateTime"
                   minOccurs="0"/>
-         <xs:element name="disassociate-time" type="xs:dateTime"
+        <xs:element name="disassociate-time" type="xs:dateTime"
                   minOccurs="0"/>
-          <xs:element name="param" minOccurs="0" maxOccurs="unbounded">
-               <xs:complexType>
-                  <xs:attribute name="pname" type="xs:string" use="required"/>
-                  <xs:attribute name="pval" type="xs:string" use="required"/>
-                </xs:complexType>
-             </xs:element>
-           <xs:any namespace='##other'
-                     minOccurs='0'
-                     maxOccurs='unbounded'
-                     processContents='lax'/>
-         </xs:sequence>
-         <xs:attribute name="participant_id" type="xs:base64Binary"
+        <xs:element name="param" minOccurs="0" maxOccurs="unbounded">
+            <xs:complexType>
+                <xs:attribute name="pname" type="xs:string" use="required"/>
+                <xs:attribute name="pval" type="xs:string" use="required"/>
+            </xs:complexType>
+        </xs:element>
+        <xs:any namespace='##other'
+                minOccurs='0'
+                maxOccurs='unbounded'
+                processContents='lax'/>
+        </xs:sequence>
+        <xs:attribute name="participant_id" type="xs:base64Binary"
               use="required"/>
-         <xs:attribute name="session_id" type="xs:base64Binary"
+        <xs:attribute name="session_id" type="xs:base64Binary"
               use="required"/>
-     </xs:complexType>
-     <xs:complexType name="participantstreamassoc">
-         <xs:sequence>
-             <xs:element name="send" type="xs:base64Binary"
+    </xs:complexType>
+    <xs:complexType name="participantstreamassoc">
+        <xs:sequence>
+            <xs:element name="send" type="xs:base64Binary"
                minOccurs="0" maxOccurs="unbounded"/>
-             <xs:element name="recv" type="xs:base64Binary"
+            <xs:element name="recv" type="xs:base64Binary"
                minOccurs="0" maxOccurs="unbounded"/>
                <xs:element name="associate-time" type="xs:dateTime"
                   minOccurs="0"/>
@@ -893,53 +889,53 @@ This section defines XML schema for Recording metadata document
                      minOccurs='0'
                      maxOccurs='unbounded'
                      processContents='lax'/>
-         </xs:sequence>
-         <xs:attribute name="participant_id" type="xs:base64Binary"
+        </xs:sequence>
+        <xs:attribute name="participant_id" type="xs:base64Binary"
               use="required"/>
-     </xs:complexType>
-     <xs:complexType name="stream">
-         <xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="stream">
+        <xs:sequence>
            <xs:element name="label" type="xs:string"
                minOccurs="0" maxOccurs="1"/>
             <xs:any namespace='##other'
                      minOccurs='0'
                      maxOccurs='unbounded'
                      processContents='lax'/>
-         </xs:sequence>
-         <xs:attribute name="stream_id" type="xs:base64Binary"
+        </xs:sequence>
+        <xs:attribute name="stream_id" type="xs:base64Binary"
               use="required"/>
-         <xs:attribute name="session_id" type="xs:base64Binary"/>
-     </xs:complexType>
-       <xs:simpleType name="dataMode">
-           <xs:restriction base="xs:string">
-              <xs:enumeration value="complete"/>
-                      <xs:enumeration value="partial"/>
-           </xs:restriction>
-     </xs:simpleType>
-     <xs:complexType name="nameID">
+        <xs:attribute name="session_id" type="xs:base64Binary"/>
+    </xs:complexType>
+    <xs:simpleType name="dataMode">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="complete"/>
+                <xs:enumeration value="partial"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="nameID">
       <xs:sequence>
-         <xs:element name="name" type ="tns:name" minOccurs="0"
+        <xs:element name="name" type ="tns:name" minOccurs="0"
                             maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="aor" type="xs:anyURI" use="required"/>
     </xs:complexType>
    <xs:complexType name="name">
-   <xs:simpleContent>
-          <xs:extension base="xs:string">
+    <xs:simpleContent>
+        <xs:extension base="xs:string">
            <xs:attribute ref="xml:lang" use="optional"/>
-          </xs:extension>
-         </xs:simpleContent>
-    </xs:complexType>
-    <xs:complexType name="reason">
+        </xs:extension>
+    </xs:simpleContent>
+   </xs:complexType>
+   <xs:complexType name="reason">
       <xs:simpleContent>
        <xs:extension base="xs:string">
           <xs:attribute type="xs:short" name="cause" use="required"/>
           <xs:attribute type="xs:string" name="protocol" default="SIP"/>
        </xs:extension>
       </xs:simpleContent>
-    </xs:complexType>
-    <xs:element name="requestsnapshot" type="tns:requestsnapshot"/>
-     <xs:complexType name="requestsnapshot">
+   </xs:complexType>
+   <xs:element name="requestsnapshot" type="tns:requestsnapshot"/>
+    <xs:complexType name="requestsnapshot">
        <xs:sequence>
           <xs:element name="requestreason" type="tns:name"  minOccurs="0"/>
           <xs:any namespace='##other'
@@ -953,7 +949,7 @@ This section defines XML schema for Recording metadata document
 	   </artwork></figure></t>
    </section>
    <section title="Security Considerations">
-       <t>This document describes an extensive set of metadata that may be recorded by the SRS. Most of the metadata could be considered private data.  For this reason, it is RECOMMENDED that a SRC use a strong means for authentication and metadata information protection and that it apply comprehensive authorization rules when using the metadata format defined in this document.</t>
+       <t>This document describes an extensive set of metadata that may be recorded by the SRS. Most of the metadata could be considered private data.  For this reason, it is RECOMMENDED that a SRC use a strong means for authentication and metadata information protection and that it apply comprehensive authorization rules when using the metadata format defined in this document. The procedures mentioned in security consideration section of <xref target="I-D.ietf-siprec-protocol"/> MUST be implemented by SRC and SRS for mutual authentication.</t>
 			
 				<t>It is RECOMMENDED that a SRC authenticate the SRS using the normal SIP authentication mechanisms, such as Digest as defined in Section 22 of <xref target="RFC3261"/>. The mechanism used for conveying the metadata information MUST ensure integrity and confidentially of the information. In order to achieve these, an end-to-end SIP encryption mechanism, such as S/MIME described in <xref target="RFC3261"/>, SHOULD be used.</t>
 				<t>If a strong end-to-end security means (such as above) is not available, it is RECOMMENDED that a SRC use mutual hop-by-hop Transport Layer Security (TLS) authentication and encryption mechanisms described in "SIPS URI Scheme" and "Interdomain Requests" of <xref target="RFC3261"/>.</t>
@@ -983,7 +979,7 @@ This specification registers a new XML namespace, and a new XML schema.
 			<t>
 	Thanks to John Elwell, Henry Lum, Leon Portman, De Villers, Andrew Hutton, Deepanshu Gautam,Charles Eckel, Muthu Arul Mozhi, Michael Benenson, Hadriel Kaplan, Brian Rosen, Scott Orton, Ofir Roth, Mary Barnes, Ken Rehor, Gonzalo Salgueiro, Yaron Pdut and Alissa Cooper for their valuable comments and inputs.
 			</t>
-             	<t> Thanks to Joe Hildebrand, Peter Saint-Andre, Matt Miller for helping in writing the XML schema and Martin Thompson for validating the XML schema and providing comments on the same. </t>
+             	<t> Thanks to Joe Hildebrand, Peter Saint-Andre, Matt Miller for helping in writing the XML schema and Martin Thomson for validating the XML schema and providing comments on the same. </t>
 		</section>
 	</middle>
 	<back>
@@ -999,16 +995,26 @@ This specification registers a new XML namespace, and a new XML schema.
 		<?rfc include="reference.RFC.3840"?>
 		<?rfc include="reference.RFC.4122"?>
         <?rfc include="reference.RFC.4648"?>
-                            <?rfc include="reference.I-D.ietf-insipid-session-id"?>
-
+        <?rfc include="reference.I-D.ietf-insipid-session-id"?>
+        <?rfc include="reference.RFC.6341"?>
+        <?rfc include="reference.I-D.ietf-siprec-protocol"?>
             </references>
             <references title="Informative References">
-			  <?rfc include="reference.RFC.6341"?>
 			  <?rfc include="reference.RFC.7245"?>
                     <?rfc include="reference.RFC.2648"?>
                     <?rfc include="reference.RFC.3326"?>
                     <?rfc include="reference.RFC.3325"?>
                     <?rfc include="reference.RFC.4235"?>
+             <reference anchor="UML-REF"
+                 target="http://www.omg.org/spec/UML/2.4/">
+        <front>
+          <title>Unified Modeling Language (UML)</title>
+          <author>
+            <organization>OMG</organization>
+          </author>
+          <date year="2011" />
+        </front>
+      </reference>
 
 		</references>
 	</back>
